@@ -8,8 +8,6 @@ Ames 도시의 주택 특성을 분석하고, 주택 가격을 예측하는 회�
 
 > 프로젝트 구조화: &nbsp;[velog.io/@jul-ee](https://velog.io/@jul-ee/DS-ML-Regression-%ED%9A%8C%EA%B7%80-%EB%AC%B8%EC%A0%9C-%EA%B5%AC%EC%A1%B0%ED%99%94)
 
->Data Platform: &nbsp;Local CSV files (from Kaggle)
-
 > 🛠️ **Tech Stack**
 > 
 >Language: &nbsp;Python  
@@ -44,7 +42,7 @@ Machine Learning:<br>- Modeling: &nbsp;`scikit-learn` (LinearRegression, Ridge, 
 <br>
 <br>
 
-## 실험 내용
+## 모델링 과정
 
 #### 1. 데이터 로드 및 확인
 
@@ -70,8 +68,6 @@ Machine Learning:<br>- Modeling: &nbsp;`scikit-learn` (LinearRegression, Ridge, 
 
 #### 4. 모델 비교 및 성능 평가
 
-최초 baseline 실험 후 결과이며 repository 노트북의 수치와 다를 수 있다.
-
 | Model            | RMSLE | RMSE     | MSE      |
 | ---------------- | ----- | -------- | -------- |
 | **Lasso**        | 0.104 | 22024.99 | 4.85e+08 |
@@ -85,7 +81,9 @@ Machine Learning:<br>- Modeling: &nbsp;`scikit-learn` (LinearRegression, Ridge, 
 - RMSE 기준 최고 성능 모델은 Ridge(alpha=50)  &nbsp;→ &nbsp;RMSE: 20,997.939
 - 트리 기반 모델(LightGBM, RandomForest, XGBoost)은 튜닝 전에는 전반적으로 선형 모델보다 낮은 성능을 보임
 
-> **Insight**: 선형 회귀 계열(Lasso, Ridge)이 기본 성능에서는 우위. 트리 계열은 하이퍼파라미터 튜닝 또는 앙상블 적용 시 기대 효과 있음.
+> **Insight**  
+> 선형 회귀 계열(Lasso, Ridge)이 기본 성능에서는 우위  
+> 트리 계열은 하이퍼파라미터 튜닝 또는 앙상블 적용 시 기대 효과 있음
 
 <br>
 
@@ -103,8 +101,8 @@ Machine Learning:<br>- Modeling: &nbsp;`scikit-learn` (LinearRegression, Ridge, 
 #### 7. Stacking
 
 - 목표: 개별 모델보다 향상된 예측 성능 확보
-- Base Learner: Ridge, Lasso, LinearRegression, LightGBM, XGBoost, RandomForest  
-- Meta Model: Lasso (XGBoost에서는 성능 하락 관찰)
+- Base Learner: &nbsp;Ridge, Lasso, LinearRegression, LightGBM, XGBoost, RandomForest  
+- Meta Model: &nbsp;Lasso (XGBoost에서는 성능 하락 관찰)
 
 #### 8. Submission
 
@@ -116,7 +114,7 @@ Machine Learning:<br>- Modeling: &nbsp;`scikit-learn` (LinearRegression, Ridge, 
 
 ## 최종 성능 및 선택 모델
 
-| 모델 유형        | 방식             | 주요 내용                        | 결과 (RMSLE / RMSE) |
+| Model        | 방식             | 주요 내용                        | 결과 (RMSLE / RMSE) |
 |------------------|------------------|----------------------------------|-------------|
 | Lasso            | 단일 모델        | 로그 변환 + 기본 하이퍼파라미터 | 0.104 &nbsp;/ &nbsp;22024.99    |
 | XGBoost         | 튜닝 모델        | GridSearchCV 적용               |  0.195 &nbsp;/ &nbsp;23534.75     |
@@ -137,7 +135,7 @@ Kaggle에 submission한 최초 score는 0.12365를 기록하였다.
 
 ## 인사이트 및 회고
 
-전처리, 로그 변환, 이상치 제거, 파생 피처 생성 등 전처리 방향을 어떻게 잡느냐에 따라 모델 성능이 눈에 띄게 향상하거나 하락할 수 있는 것을 알 수 있었다. 모델의 성능이 이 초기 판단에서 갈린다는 것을 실험을 통해 확인하였고, 문제의 목적에 맞게 데이터를 충분히 이해하고 상황에 맞는 전처리 전략을 세우는 것의 중요성을 다시 느꼈다. 
+결측치 처리, 로그 변환, 이상치 제거, 파생 피처 생성 등 전처리 방향을 어떻게 잡느냐에 따라 모델 성능이 눈에 띄게 향상하거나 하락하는 것을 보았다. 모델의 성능이 이 초기 판단에서 갈린다는 것을 실험을 통해 확인하였고, 문제의 목적에 맞게 데이터를 충분히 이해하고 상황에 맞는 전처리 전략을 세우는 것의 중요성을 다시 느꼈다. 
 
 해당 문제에서는 선형 회귀 계열 모델이 baseline에서 가장 안정적인 성능을 보여주었다.
 트리 기반 모델은 초기 성능이 다소 낮았으나 튜닝을 통해 충분히 개선 가능함을 확인하였다.
@@ -145,9 +143,11 @@ Stacking을 적용했을 때 개별 모델보다 RMSE가 더 낮아졌으며 메
 
 모델 성능은 높였지만 feature selection이나 Bagging, Boosting 등 다른 앙상블 방식도도 추가적으로 실험해 볼 여지가 있다.
 
+회귀 문제를 해결하기 위한 하나의 방향성을 정리할 수 있었다. 해당 프로젝트에서 정의한 함수들과 실험을 구조화해 봄으로써 추가적인 실험을 설계에 인사이트가 될 것 같다. 이후 새로운 데이터셋에서 다른 목적을 가지고 회귀 모델을 구현할 때에도 이번에 구조화한 내용을 바탕으로 고도화해 나간다면 다양한 상황에서 문제를 해결할 수 있는 능력을 기를 수 있을 것이다.
+
 <br>
 <br>
 
-> 🔗 [Kaggle "House Prices: Advanced Regression Techniques" 대회 링크](https://www.kaggle.com/c/house-prices-advanced-regression-techniques)
+> 🔗 [Kaggle "House Prices: Advanced Regression Techniques" 대회](https://www.kaggle.com/c/house-prices-advanced-regression-techniques)
 
 
