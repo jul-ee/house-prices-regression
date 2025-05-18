@@ -1,14 +1,21 @@
 # 📋 House Prices: Advanced Regression Techniques
 
-Kaggle의 "House Prices: Advanced Regression Techniques" 대회 데이터를 기반으로  
+Kaggle "House Prices: Advanced Regression Techniques" 대회 데이터를 기반으로  
 Ames 도시의 주택 특성을 분석하고, 주택 가격을 예측하는 회귀 모델을 구현한 프로젝트입니다.
 
-회귀 알고리즘을 비교하고 성능 향상을 위해 하이퍼파라미터 튜닝과 스태킹 기법을 적용하였으며  
+회귀 알고리즘을 비교하고 성능 향상을 위해 하이퍼파라미터 튜닝과 스태킹을 적용하였으며  
 최종 예측 결과는 Kaggle 제출 형식에 맞추어 평가하였습니다.
 
+> 프로젝트 구조화: &nbsp;[velog.io/@jul-ee](https://velog.io/@jul-ee/DS-ML-Regression-%ED%9A%8C%EA%B7%80-%EB%AC%B8%EC%A0%9C-%EA%B5%AC%EC%A1%B0%ED%99%94)
 
-> 🛠️ Tech Stack  
->: &nbsp;Python (Numpy, Pandas, Matplotlib, Seaborn), Scikit-learn, LightGBM, XGBoost, Jupyter Notebook
+>Data Platform: &nbsp;Local CSV files (from Kaggle)
+
+> 🛠️ **Tech Stack**
+> 
+>Language: &nbsp;Python  
+Data Analysis & EDA: &nbsp;pandas, numpy, Jupyter Notebook  
+Visualization: &nbsp;matplotlib, seaborn  
+Machine Learning:<br>- Modeling: &nbsp;`scikit-learn` (LinearRegression, Ridge, Lasso, RandomForest), `LightGBM`, `XGBoost`<br>- Model Evaluation: &nbsp;`scikit-learn` (cross_val_score, GridSearchCV, mean_squared_error)
 
 <br>
 <br>
@@ -26,7 +33,7 @@ Ames 도시의 주택 특성을 분석하고, 주택 가격을 예측하는 회�
 ## 목차
 
 1. [데이터 로드 및 확인](#1-데이터-로드-및-확인)  
-2. [데이터 전처리](#2-데이터-전처리-로그-변환)  
+2. [데이터 전처리](#2-데이터-전처리)  
 3. [모델 학습 및 평가 함수 정의](#3-모델-학습-및-평가-함수-정의)  
 4. [모델 비교 및 성능 평가](#4-모델-비교-및-성능-평가)  
 5. [하이퍼파라미터 튜닝](#5-하이퍼파라미터-튜닝)  
