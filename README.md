@@ -36,7 +36,7 @@ Machine Learning:<br>- Modeling: &nbsp;`scikit-learn` (LinearRegression, Ridge, 
 4. [모델 비교 및 성능 평가](#4-모델-비교-및-성능-평가)  
 5. [하이퍼파라미터 튜닝](#5-하이퍼파라미터-튜닝)  
 6. [Fine-tuning](#6-Fine-tuning)  
-7. [Ensemble Stacking](#7-Stacking)  
+7. [Stacking](#7-Stacking)  
 8. [Kaggle 제출](#8-Submission)
 
 <br>
